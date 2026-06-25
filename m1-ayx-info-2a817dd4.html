@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ayx · 日常查询与对照</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+            background: #f4f5f7;
+            color: #1e1f22;
+            line-height: 1.65;
+            padding: 2.4rem 1.2rem;
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* hero */
+        .hero {
+            background: #fff;
+            border-radius: 28px;
+            padding: 3.6rem 2.8rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.04);
+            border: 1px solid #e9ebee;
+            margin-bottom: 2.8rem;
+            transition: box-shadow 0.2s;
+        }
+        .hero:hover {
+            box-shadow: 0 12px 32px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 450;
+            letter-spacing: -0.01em;
+            color: #1d1f21;
+            margin-bottom: 0.6rem;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: #3d4045;
+            max-width: 680px;
+            margin-bottom: 0.25rem;
+        }
+        .hero .tagline {
+            display: inline-block;
+            background: #ebedf0;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #4b4f56;
+            margin-top: 0.6rem;
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #fff;
+            border-radius: 22px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.02);
+            border: 1px solid #e2e5e9;
+            margin-bottom: 1.8rem;
+        }
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.2rem;
+            color: #1d1f21;
+        }
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 480;
+            margin-bottom: 0.5rem;
+            color: #2b2e33;
+        }
+
+        /* 优势区：三列卡片 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 1.8rem;
+        }
+        .feat-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 1.5rem 1.4rem;
+            border: 1px solid #e2e5e9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.015);
+            transition: transform 0.15s ease, box-shadow 0.15s;
+        }
+        .feat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.04);
+        }
+        .feat-card .num {
+            display: inline-block;
+            font-size: 1.8rem;
+            font-weight: 380;
+            color: #9da3af;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+        .feat-card h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+        }
+        .feat-card p {
+            color: #4e525a;
+            font-size: 0.95rem;
+        }
+
+        /* 说明区双栏 */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+        }
+        .col-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 1.8rem;
+            border: 1px solid #e2e5e9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.015);
+        }
+        .col-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .col-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f1f3;
+            font-size: 0.95rem;
+            color: #3a3d43;
+        }
+        .col-card li:last-child {
+            border-bottom: none;
+        }
+        .col-card li::before {
+            content: " · ";
+            color: #8e95a0;
+            font-weight: 500;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem 2.2rem;
+            border: 1px solid #e2e5e9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.015);
+            margin-bottom: 1.8rem;
+        }
+        .faq-mini h2 {
+            margin-bottom: 1.2rem;
+        }
+        .faq-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #edf0f2;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-item .q {
+            font-weight: 460;
+            color: #1e2024;
+            margin-bottom: 0.15rem;
+        }
+        .faq-item .a {
+            color: #54585f;
+            font-size: 0.93rem;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            text-align: center;
+            padding: 2rem 0 0.8rem;
+            color: #6f757e;
+            font-size: 0.9rem;
+            border-top: 1px solid #dde0e4;
+            margin-top: 1.2rem;
+        }
+        .footer-links a {
+            color: #3b4047;
+            text-decoration: none;
+            border-bottom: 1px dotted #c5c9cf;
+        }
+        .footer-links a:hover {
+            border-bottom: 1px solid #3b4047;
+        }
+
+        /* 响应式 */
+        @media (max-width: 780px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .hero {
+                padding: 2.4rem 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 1.2rem 0.6rem;
+            }
+            .card, .faq-mini, .col-card {
+                padding: 1.4rem;
+            }
+            .feat-card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero -->
+    <div class="hero">
+        <h1>日常查询 · 对照 · 延伸阅读</h1>
+        <p>
+            信息检索早已不限于单一入口。从术语释义、数据对照到背景延伸，一个轻量而可靠的中转点往往比漫无目的搜索更有效。<a href="https://m1-ayx.com">ayx</a> 正是这样一个起点：没有冗余导航，只有直达内容的路径。
+        </p>
+        <span class="tagline">轻量 · 专注 · 无干扰</span>
+    </div>
+
+    <!-- 优势区：卡片网格 -->
+    <div class="features-grid">
+        <div class="feat-card">
+            <div class="num">01</div>
+            <h3>快速定位</h3>
+            <p>省去多层跳转，打开即见核心信息。适合日常反复查询的场景。</p>
+        </div>
+        <div class="feat-card">
+            <div class="num">02</div>
+            <h3>对照结构</h3>
+            <p>并列展示关键条目，方便横向对比差异，减少来回翻页的麻烦。</p>
+        </div>
+        <div class="feat-card">
+            <div class="num">03</div>
+            <h3>延伸线索</h3>
+            <p>每个条目附带轻量参考链接，供需要深入阅读时继续探索。</p>
+        </div>
+    </div>
+
+    <!-- 说明区：双栏 -->
+    <div class="two-col">
+        <div class="col-card">
+            <h3>常见使用场景</h3>
+            <ul>
+                <li>查证术语、缩写、编号的准确含义</li>
+                <li>对比两组相似数据或描述之间的细微差异</li>
+                <li>快速定位条目原文或原始出处</li>
+                <li>在多个参考来源之间进行交叉核对</li>
+                <li>作为日常阅读中遇到陌生概念的初步中转</li>
+            </ul>
+        </div>
+        <div class="col-card">
+            <h3>页面特点</h3>
+            <ul>
+                <li>纯信息呈现，无弹窗、无浮层干扰</li>
+                <li>条目之间间距均匀，视觉节奏平缓</li>
+                <li>移动端与桌面端保持同样的可读性</li>
+                <li>不收集用户数据，不设追踪脚本</li>
+                <li>更新记录清晰，每次变动均有说明</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <h2>常见疑问摘要</h2>
+        <div class="faq-item">
+            <div class="q">· 这里的「对照」具体指什么？</div>
+            <div class="a">指将两条或以上相似内容并排呈现，方便逐项比较。例如版本号、规格参数、定义表述等。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">· 每次访问内容都一样吗？</div>
+            <div class="a">核心条目相对稳定，但延伸阅读部分会随来源更新而调整，保持时效性。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">· 能否直接复制内容用于笔记？</div>
+            <div class="a">可以。页面未设复制限制，引用时建议注明出处即可。</div>
+        </div>
+    </div>
+
+    <!-- 底部 + 链接 -->
+    <div class="footer-links">
+        <p>
+            从 <a href="https://m1-ayx.com">ayx</a> 开始，日常查询与对照变得更轻快。<br>
+            页面内容仅供参考，不构成专业建议。
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
